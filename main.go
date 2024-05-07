@@ -4,6 +4,8 @@ import (
 	"os"
 	"log"
 	"github.com/joho/godotenv"
+	"github.com/go-chi/chi"
+	"github.com/go-chi/cors"
 )
 	
 
@@ -21,5 +23,6 @@ func main() {
 	if portString == "" {
 		log.Fatal("THE PORT VARIABLE IS NOT SET	")
 	}
+	router := chi.NewRouter()
 	fmt.Println("Port: ", portString)
 }
