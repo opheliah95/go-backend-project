@@ -3,6 +3,7 @@ import (
 	"fmt"
 	"os"
 	"log"
+	"net/http"
 	"github.com/joho/godotenv"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
@@ -23,6 +24,17 @@ func main() {
 	if portString == "" {
 		log.Fatal("THE PORT VARIABLE IS NOT SET	")
 	}
+
+	//add server
 	router := chi.NewRouter()
+	srv := &http.Server{
+		Handler: router,
+		Addr: ":"+ portString,
+	}
+	log.Printf("server starting on port %v", portString)
+	err = srv.ListenAndServe()
+	if err != nil {
+		log.Fatal(err)
+	}
 	fmt.Println("Port: ", portString)
 }
