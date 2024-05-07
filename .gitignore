@@ -1,0 +1,4 @@
+*.exe
+rssagg
+.vscode/
+.env
